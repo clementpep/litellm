@@ -1,0 +1,66 @@
+# Docker
+# Dockerfile
+# docker-compose.yaml
+# .dockerignore
+*.tar
+
+# Python
+__pycache__
+logs
+*.log
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+*.cover
+.hypothesis
+.pytest_cache
+
+# Virtual environments
+venv/
+ENV/
+env/
+.env
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.gradio
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+certs
+*.crt
+*.pem
+cache
+.token_cache.json
+
+# Documentation
+docs/
+generated_pptx
+
+# Kubernetes
+# *secret*
+*secret.yaml
+
+# Other
+custom-mcp-inspector

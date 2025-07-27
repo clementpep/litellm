@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yaml
+.dockerignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+*.cover
+.hypothesis
+.pytest_cache
+
+# Virtual environments
+venv/
+ENV/
+env/
+.env
+.venv/
+
+# IDE
+.vscode/
+
+# Documentation
+README.md
+
+*.yaml

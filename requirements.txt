@@ -1,0 +1,3 @@
+# Required dependencies for running LiteLLM as a proxy with extended features
+litellm[proxy] >= 1.40.14
+prisma

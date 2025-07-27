@@ -1,0 +1,61 @@
+stages:
+  - docker-check
+  - build
+  - deploy
+
+variables:
+  IMAGE_TAG: $AZURE_REGISTRY_URL/litellm-proxy:$CI_COMMIT_SHORT_SHA
+  DOCKER_HOST: unix:///var/run/docker.sock
+
+check-docker-env:
+  stage: docker-check
+  image: docker:24.0.5
+  tags:
+    - docker
+  script:
+    - docker version
+    - docker info
+
+litellm-build-and-push:
+  stage: build
+  image: docker:24.0.5
+  tags:
+    - docker
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
+        - Dockerfile
+        - docker-compose.yml
+        - requirements.txt
+        - .env
+    - when: never
+  script:
+    - echo "$AZURE_REGISTRY_PASSWORD" | docker login $AZURE_REGISTRY_URL -u "$AZURE_REGISTRY_USERNAME" --password-stdin
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+
+litellm-azure-deployment:
+  stage: deploy
+  image: curlimages/curl:latest
+  tags:
+    - docker
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
+        - Dockerfile
+        - docker-compose.yml
+        - requirements.txt
+        - .env
+    - when: never
+  script:
+    - |
+      echo "Triggering Azure Web App deployment with image: $IMAGE_TAG"
+      curl -X PUT \
+        -H "Authorization: Bearer $AZURE_TOKEN" \
+        -H "Content-Type: application/json" \
+        -d '{
+              "properties": {
+                "linuxFxVersion": "DOCKER|'$IMAGE_TAG'"
+              }
+            }' \
+        "https://management.azure.com/subscriptions/$AZURE_SUBSCRIPTION_ID/resourceGroups/$AZURE_RESOURCE_GROUP/providers/Microsoft.Web/sites/$AZURE_APP_NAME/config/web?api-version=2023-01-01"
