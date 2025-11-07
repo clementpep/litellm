@@ -40,4 +40,6 @@ env/
 # Documentation
 README.md
 
+# Exclude all yaml except config.yaml
 *.yaml
+!config.yaml

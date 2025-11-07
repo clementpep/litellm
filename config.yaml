@@ -1,0 +1,35 @@
+# LiteLLM Production Configuration
+# Documentation: https://docs.litellm.ai/docs/proxy/prod
+
+# Models will be configured via the UI/Admin panel after deployment
+model_list: []
+
+litellm_settings:
+  # Production logging - disable verbose, use JSON logs
+  set_verbose: False
+  json_logs: true
+
+  # Database batch write optimization for better performance
+  proxy_batch_write_at: 60
+
+general_settings:
+  # Master key for admin access (required, must start with sk-)
+  master_key: ${LITELLM_MASTER_KEY}
+
+  # SQLite database for persistence (stored in container)
+  # Use SQLite for simplicity - data persists within container lifecycle
+  database_url: "sqlite:////app/litellm.db"
+
+  # Salt key for encrypting/decrypting credentials in database
+  litellm_salt_key: ${LITELLM_SALT_KEY}
+
+  # Enable UI for admin panel
+  ui: true
+
+  # Store model in DB
+  store_model_in_db: true
+
+# Environment will be set to PRODUCTION via env var
+environment_variables:
+  LITELLM_MODE: "PRODUCTION"
+  LITELLM_LOG: "ERROR"

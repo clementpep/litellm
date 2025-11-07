@@ -1,5 +1,4 @@
 # Docker Compose to launch LiteLLM proxy and PostgreSQL for API key management and UI
-
 services:
   litellm:
     build: .
