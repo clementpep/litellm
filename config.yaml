@@ -16,12 +16,8 @@ general_settings:
   # Master key for admin access (required, must start with sk-)
   master_key: ${LITELLM_MASTER_KEY}
 
-  # SQLite database for persistence (stored in container)
-  # Use SQLite for simplicity - data persists within container lifecycle
-  database_url: "sqlite:////app/litellm.db"
-
-  # Salt key for encrypting/decrypting credentials in database
-  litellm_salt_key: ${LITELLM_SALT_KEY}
+  # Database URL will be provided via DATABASE_URL environment variable
+  # database_url is read from DATABASE_URL env var automatically
 
   # Enable UI for admin panel
   ui: true
@@ -32,4 +28,4 @@ general_settings:
 # Environment will be set to PRODUCTION via env var
 environment_variables:
   LITELLM_MODE: "PRODUCTION"
-  LITELLM_LOG: "ERROR"
+  LITELLM_LOG: "INFO"

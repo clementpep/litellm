@@ -1,0 +1,8 @@
+# Namespace for LiteLLM deployment
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: litellm
+  labels:
+    name: litellm
+    app: litellm

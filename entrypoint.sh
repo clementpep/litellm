@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "=== LiteLLM Production Startup ==="
-echo "Database: SQLite at /app/litellm.db"
-echo "Starting LiteLLM proxy server..."
+echo "=== LiteLLM Production Startup (Stateless Mode) ==="
+echo "Mode: No database (stateless)"
 echo "Port: 4000"
 echo "Config: /app/config.yaml"
-echo "Workers: $(nproc)"
+echo "Workers: 1"
+echo ""
+echo "Starting LiteLLM proxy server..."
 
-# Start LiteLLM with production settings
-# Prisma migrations will run automatically on startup
-exec litellm --port 4000 --config /app/config.yaml --num_workers $(nproc)
+# Start LiteLLM in stateless mode (no database)
+exec litellm --port 4000 --config /app/config.yaml --num_workers 1
