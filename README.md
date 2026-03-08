@@ -30,8 +30,8 @@
 ```bash
 LITELLM_MODE=PRODUCTION
 LITELLM_LOG=ERROR
-LITELLM_SALT_KEY=sk-sUEYgScScg7HJ5ocdMc+/mYQpZnkzDuv/lPbc6S71JhKwybUks8iFT1hvq8oLeUH
-LITELLM_MASTER_KEY=sk-0m+gLRphHEY8d/Dl38K2A+d1bP5u+OCXJOHnR2o/MvLs4B/EOC+dgGwS2hEJmbQd
+LITELLM_SALT_KEY=<your-salt-key>
+LITELLM_MASTER_KEY=<your-master-key>
 ```
 
 ### Endpoints disponibles
@@ -147,7 +147,7 @@ gcloud run deploy litellm \
   --max-instances=3 \
   --timeout=300 \
   --cpu-boost \
-  --set-env-vars="LITELLM_MODE=PRODUCTION,LITELLM_LOG=ERROR,LITELLM_SALT_KEY=sk-sUEYgScScg7HJ5ocdMc+/mYQpZnkzDuv/lPbc6S71JhKwybUks8iFT1hvq8oLeUH,LITELLM_MASTER_KEY=sk-0m+gLRphHEY8d/Dl38K2A+d1bP5u+OCXJOHnR2o/MvLs4B/EOC+dgGwS2hEJmbQd"
+  --set-env-vars="LITELLM_MODE=PRODUCTION,LITELLM_LOG=ERROR,LITELLM_SALT_KEY=<your-salt-key>,LITELLM_MASTER_KEY=<your-master-key>"
 ```
 
 ### Monitoring
