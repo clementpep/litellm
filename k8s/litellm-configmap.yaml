@@ -20,6 +20,9 @@ data:
       # Database batch write optimization for better performance
       proxy_batch_write_at: 60
 
+      # Drop unsupported params (e.g. encoding_format for Gemini embeddings)
+      drop_params: true
+
     general_settings:
       # Master key for admin access (required, must start with sk-)
       master_key: ${LITELLM_MASTER_KEY}
