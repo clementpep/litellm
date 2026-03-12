@@ -9,8 +9,13 @@ data:
     # LiteLLM Production Configuration
     # Documentation: https://docs.litellm.ai/docs/proxy/prod
 
-    # Models will be configured via the UI/Admin panel after deployment
-    model_list: []
+    # Wildcard pass-through for all Gemini models via Vertex AI (uses GKE ADC, no API key required)
+    model_list:
+      - model_name: "gemini/*"
+        litellm_params:
+          model: "vertex_ai/gemini/*"
+          vertex_project: "wavestone-ai-librechat"
+          vertex_location: "us-central1"
 
     litellm_settings:
       # Production logging - disable verbose, use JSON logs
